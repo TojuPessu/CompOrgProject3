@@ -17,6 +17,12 @@ characters not in set
         lb $t0, 0($t2)
         beq $t0, 10, isEmpty #checks if a string is empty
         beq $t0, 0 isEmpty
+        
+        addi $s0, $0, 35 #store Base-N number
+        addi $t3, $0, 1 
+        addi $t4, $0, 0
+        addi $t5, $0, 0
+
 
 
 
