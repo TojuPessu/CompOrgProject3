@@ -1,0 +1,2 @@
+.data
+    emptyInput: .asciiz "Input is empty." #creates message for string with an empty input
