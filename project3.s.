@@ -1,28 +1,27 @@
 .data
-    emptyInput: .asciiz "Input is empty." #creates message for string with an empty input
+    emptyInput: .asciiz "Input is empty." #message for string with an empty input
     longInput: .asciiz "Input it is too long." #messgae for string that has more than 4 characters
-    invalidInput: .asciiz "Invalid base-35 number." 
-characters not in set
+    invalidInput: .asciiz "Invalid base-35 number." #message for string that includes one or more characters not in set
     userI: .space 1000
 .text
-     main:
-        li $v0, 8 
+    main:
+        li $v0, 8 #syscall to read string
         la $a0, userI #stores address of string
-        li $a1, 500 #creates space for string input
+        li $a1, 500 #create ample space for string input
         syscall
         add $t0, $0, 0 #initialize $t0 register
         add $t1, $0, 0 #initialize $t1 register
-        
+
         la $t2, userI 
         lb $t0, 0($t2)
-        beq $t0, 10, isEmpty #checks if a string is empty
+        beq $t0, 10, isEmpty #check for an empty string
         beq $t0, 0 isEmpty
-        
+
         addi $s0, $0, 35 #store Base-N number
-        addi $t3, $0, 1 
+        addi $t3, $0, 1 #initialize new registers
         addi $t4, $0, 0
         addi $t5, $0, 0
-        
+
         ignoreSpaces:
             lb $t0, 0($t2) #load address in $t2 to $t0
             addi $t2, $t2, 1 #increment pointer
@@ -30,7 +29,7 @@ characters not in set
             beq $t0, 32, ignoreSpaces 
             beq $t0, 10, isEmpty 
             beq $t0, $0, isEmpty 
-            
+
         viewChars:
             lb $t0, 0($t2)
             addi $t2, $t2, 1
@@ -38,17 +37,17 @@ characters not in set
             beq $t0, 10, restart
             beq $t0, 0, restart
             bne $t0, 32, viewChars
-            
-       viewRemaining:
+
+        viewRemaining:
             lb $t0, 0($t2)
             addi $t2, $t2, 1
             addi $t1, $t1, 1
             beq $t0, 10, restart
             beq $t0, 0, restart
-            bne $t0, 32, itsInvalid #jump to itsInvalid branch if not equal
+            bne $t0, 32, itsInvalid 
             j viewRemaining
-  
-       restart:
+
+        restart:
             sub $t2, $t2, $t1 #restart the pointer
             la $t1, 0 #restart the counter
 
@@ -57,7 +56,7 @@ characters not in set
             addi $t2, $t2, 1
             beq $t0, 32, continue
         addi $t2, $t2, -1
-        
+
         stringLength:
             lb $t0, ($t2)
             addi $t2, $t2, 1
@@ -68,14 +67,14 @@ characters not in set
             beq $t1, 5, isTooLong
             j stringLength
 
-  callconversion:
+callconversion:
     sub $t2, $t2, $t1 #move ptr back to start of string
     addi $sp, $sp, -4 #allocating memory for stack
     sw $ra, 0($sp) #only return address
     move $a0, $t2
-    li $a1, 3 #string length !! 
-    li $a2, 1 #exponentiated base
-    jal DeciVersion #call to function
+    li $a1, 3  
+    li $a2, 1 
+    jal DeciVersion 
 
     #print result
     move $a0, $v0
@@ -85,20 +84,6 @@ characters not in set
     lw $ra, 0($sp) 
     addi $sp, $sp, 4 
     jr $ra
-
-
-
-
-
-
-
-        
-
- 
-
-
-
-
 
 
 
