@@ -68,18 +68,24 @@ characters not in set
             beq $t1, 5, isTooLong
             j stringLength
 
-      callconversion:
-           sub $t2, $t2, $t1 #move ptr back to start of string
-           addi $sp, $sp, -4 #allocating memory for stack
-           sw $ra, 0($sp) #only return address
-           move $a0, $t2
-           li $a1, 3 
-           li $a2, 1 
-           jal DeciVersion 
-           
-           move $a0, $v0
-           li $v0, 1
-           syscall
+  callconversion:
+    sub $t2, $t2, $t1 #move ptr back to start of string
+    addi $sp, $sp, -4 #allocating memory for stack
+    sw $ra, 0($sp) #only return address
+    move $a0, $t2
+    li $a1, 3 #string length !! 
+    li $a2, 1 #exponentiated base
+    jal DeciVersion #call to function
+
+    #print result
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    
+    lw $ra, 0($sp) 
+    addi $sp, $sp, 4 
+    jr $ra
+
 
 
 
