@@ -27,6 +27,10 @@ characters not in set
             lb $t0, 0($t2) #load address in $t2 to $t0
             addi $t2, $t2, 1 #increment pointer
             addi $t1, $t1, 1 #increment counter
+            beq $t0, 32, ignoreSpaces 
+            beq $t0, 10, isEmpty 
+            beq $t0, $0, isEmpty 
+
 
 
 
