@@ -72,6 +72,11 @@ characters not in set
            sub $t2, $t2, $t1 #move ptr back to start of string
            addi $sp, $sp, -4 #allocating memory for stack
            sw $ra, 0($sp) #only return address
+           move $a0, $t2
+           li $a1, 3 
+           li $a2, 1 
+           jal DeciVersion 
+
 
 
 
