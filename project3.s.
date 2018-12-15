@@ -1,2 +1,4 @@
 .data
     emptyInput: .asciiz "Input is empty." #creates message for string with an empty input
+    longInput: .asciiz "Input it is too long." #messgae for string that has more than 4 characters
+
