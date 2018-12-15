@@ -7,5 +7,9 @@ characters not in set
 .text
      main:
         li $v0, 8 
+        la $a0, userI #stores address of string
+        li $a1, 500 #creates space for string input
+        syscall
+
 
 
