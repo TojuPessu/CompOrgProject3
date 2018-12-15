@@ -146,13 +146,19 @@ DeciVersion:
         number:
             addi $s3, $s3, -48
             jal More
-
-
-
-
-
-
-
+    #mul $s3, $s3, $a2 #multiplying the byte x the exponentiated base 
+    #mul $a2, $a2, 35 #multiplying the exoonentiated base by 35 to get next power 
+    More:
+        mul $s3, $s3, $a2 
+        mul $a2, $a2, 35 
+        jal DeciVersion
+    
+    #jal DeciVersion #call function again (loop)
+        add $v0, $s3, $v0   #returning last byte plus decimal version of the rest of number
+        lw $ra, 0($sp)      
+        lw $s3, 4($sp)
+        addi $sp, $sp, 8
+        jr $ra
 
 
 
