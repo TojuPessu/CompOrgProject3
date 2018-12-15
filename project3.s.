@@ -15,6 +15,9 @@ characters not in set
         
         la $t2, userI 
         lb $t0, 0($t2)
+        beq $t0, 10, isEmpty #checks if a string is empty
+        beq $t0, 0 isEmpty
+
 
 
 
