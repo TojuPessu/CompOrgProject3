@@ -68,6 +68,13 @@ characters not in set
             beq $t1, 5, isTooLong
             j stringLength
 
+      callconversion:
+           sub $t2, $t2, $t1 #move ptr back to start of string
+           addi $sp, $sp, -4 #allocating memory for stack
+           sw $ra, 0($sp) #only return address
+
+
+
 
         
 
