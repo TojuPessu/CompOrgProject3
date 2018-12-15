@@ -12,6 +12,10 @@ characters not in set
         syscall
         add $t0, $0, 0 #initialize $t0 register
         add $t1, $0, 0 #initialize $t1 register
+        
+        la $t2, userI 
+        lb $t0, 0($t2)
+
 
 
 
