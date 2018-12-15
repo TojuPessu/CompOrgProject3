@@ -125,6 +125,16 @@ DeciVersion:
     beq $a1, $0, return_zero 
     addi $a1, $a1, -1 #length - 1, so to start at end of string
     add $t0, $a0, $a1 
+    lb $s3, 0($t0) 
+    #asciiConversions:
+            blt $s3, 48, itsInvalid #if char is before 0 in ascii table, the input is invalid
+            blt $s3, 58, number
+            blt $s3, 65, itsInvalid
+            blt $s3, 90, upperCase
+            blt $s3, 97, itsInvalid
+            blt $s3, 122, lowerCase
+            blt $s3, 128, itsInvalid
+
 
 
 
