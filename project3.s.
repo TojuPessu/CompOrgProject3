@@ -5,5 +5,7 @@
 characters not in set
     userI: .space 1000
 .text
+     main:
+        li $v0, 8 
 
 
