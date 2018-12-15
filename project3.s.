@@ -96,6 +96,10 @@ callconversion:
             la $a0, emptyInput 
             li $v0, 4 
             syscall
+            
+            li $v0, 10 #end of program
+            syscall
+
 
 
 
