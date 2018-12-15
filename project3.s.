@@ -110,13 +110,18 @@ callconversion:
             
        itsInvalid:
             la $a0, invalidInput #loads string/message
-            li $v0, 4 
+            li $v0, 4 #prints string
             syscall
 
             li $v0, 10 #end of program
             syscall
 
             jr $ra
+
+DeciVersion:
+    addi $sp, $sp, -8 #
+    sw $ra, 0($sp) #storing return address
+
 
 
 
